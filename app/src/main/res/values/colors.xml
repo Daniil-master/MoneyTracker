@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
-    <color name="textColor">#E53935</color>
+    <color name="textBgColor">#84c0c5</color>
+    <color name="textWhile">#ffffff</color>
 
 </resources>
