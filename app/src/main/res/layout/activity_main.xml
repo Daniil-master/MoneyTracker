@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Привет, Вася!"
+        android:text="@string/hi"
         android:background="@color/textBgColor"
         android:textColor="@color/textWhile"
         android:textSize="@dimen/textOne" />
