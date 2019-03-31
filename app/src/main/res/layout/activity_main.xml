@@ -11,6 +11,6 @@
         android:text="Привет, Вася!"
         android:background="@color/textBgColor"
         android:textColor="@color/textWhile"
-        android:textSize="20sp" />
+        android:textSize="@dimen/textOne" />
 
 </RelativeLayout>
