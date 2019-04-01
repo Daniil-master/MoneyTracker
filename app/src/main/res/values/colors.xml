@@ -6,5 +6,6 @@
 
     <color name="textBgColor">#84c0c5</color>
     <color name="textWhile">#ffffff</color>
+    <color name="white">#FFFF</color>
 
 </resources>
