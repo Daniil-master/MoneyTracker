@@ -42,7 +42,7 @@ public class AddItemActivity extends AppCompatActivity {
                 if(price.getText() == charSequence){
                     Toast.makeText(AddItemActivity.this, "Price ID", Toast.LENGTH_SHORT).show();
                     if(TextUtils.isEmpty(price.getText()))
-                        price.setText(getString(R.string.rub));
+                        price.setText(getString(R.string.currency_rub));
                 }
             }
 

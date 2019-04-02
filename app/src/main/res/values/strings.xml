@@ -2,5 +2,7 @@
     <string name="app_name">MoneyTracker</string>
     <string name="hi">Привет, Вася!</string>
     <string name="add_item_title">Новая запись</string>
-    <string name="rub">₽</string>
+    <string name="currency_rub">₽</string>
+
+    <string name="activity_items_list_title">Учёт бюджета</string>
 </resources>
