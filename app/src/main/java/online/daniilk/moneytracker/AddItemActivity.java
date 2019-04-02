@@ -34,16 +34,16 @@ public class AddItemActivity extends AppCompatActivity {
         TextWatcher txtWatcher =  new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(price.getText() == charSequence){
-                    Toast.makeText(AddItemActivity.this, "Price ID", Toast.LENGTH_SHORT).show();
-                   // if(price.getText().equals(null))
-                        price.setText(getString(R.string.rub));
-                }
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                if(price.getText() == charSequence){
+                    Toast.makeText(AddItemActivity.this, "Price ID", Toast.LENGTH_SHORT).show();
+                    if(TextUtils.isEmpty(price.getText()))
+                        price.setText(getString(R.string.rub));
+                }
             }
 
             @Override
