@@ -1,12 +1,12 @@
 package online.daniilk.moneytracker;
 
-public class Record {
+public class Item {
 
     private String title; // private - защещённость
     private String comment;
     private int price;
 
-    public Record(String title, int price) {
+    public Item(String title, int price) {
         this.title = title;
         this.price = price;
     }
