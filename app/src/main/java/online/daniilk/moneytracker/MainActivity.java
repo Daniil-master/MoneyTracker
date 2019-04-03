@@ -1,7 +1,7 @@
 package online.daniilk.moneytracker;
 
 import android.os.Bundle;
-import android.support.design.TableLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private ViewPager viewPager;
-     private TableLayout tabLayout;
+     private TabLayout tabLayout;
 
 
     @Override
