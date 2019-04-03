@@ -106,7 +106,7 @@ public class ItemListActivity extends AppCompatActivity {
         public void applyData(Record record) {
             Log.d(TAG, "onCreateViewHolder " + recyclerView.getChildLayoutPosition(itemView) + " " + record.getTitle());
             title.setText(record.getTitle()); // Сдесь добавить рубль
-            price.setText(String.valueOf(record.getPrice()));
+            price.setText(String.valueOf(record.getPrice()+getString(R.string.currency_rub)));
             SpannableString spannableString = new SpannableString(String.valueOf(record.getPrice()));
 
         }
