@@ -2,7 +2,6 @@ package online.daniilk.moneytracker;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
-    private static final String TAG = "ItemAdapter";
+    private static final String TAG = "ItemsAdapter";
     private List<Item> data = new ArrayList<>();
 
     public ItemsAdapter() {
@@ -21,14 +20,16 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
     @Override
     public ItemsAdapter.ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.item, parent, false);
+        // (разметка, родитель, изменнение в процессе контроллера реагирование к корню)
         return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ItemsAdapter.ItemViewHolder holder, int position) {
         // Даёт данные для наполнения
-       Item item = data.get(position);
+        Item item = data.get(position);
         holder.applyData(item);
 
     }
@@ -39,7 +40,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     }
 
 
-     static class ItemViewHolder extends RecyclerView.ViewHolder {
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
         // Вложенный статистический класс
         private final TextView title;
         private final TextView price;
@@ -56,8 +57,8 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
         public void applyData(Item item) {
             title.setText(item.getTitle()); // Сдесь добавить рубль
-            price.setText(String.valueOf(item.getPrice() + (R.string.currency_rub)));
-            SpannableString spannableString = new SpannableString(String.valueOf(item.getPrice()));
+            price.setText(String.valueOf(item.getPrice() + itemView.getContext().getString(R.string.currency_rub)));
+//            SpannableString spannableString = new SpannableString(String.valueOf(item.getPrice()));
 
         }
 
