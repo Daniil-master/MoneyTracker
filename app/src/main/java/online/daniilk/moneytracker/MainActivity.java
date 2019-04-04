@@ -1,5 +1,6 @@
 package online.daniilk.moneytracker;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -10,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private ViewPager viewPager;
-     private TabLayout tabLayout;
+    private TabLayout tabLayout;
 
 
     @Override
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         MainPagesAdapter adapter = new MainPagesAdapter(getSupportFragmentManager(), this);
         viewPager.setAdapter(adapter);
 
+        tabLayout.setTabTextColors(Color.WHITE, Color.BLACK);
+        tabLayout.setSelectedTabIndicatorColor(Color.YELLOW);
+//        tabLayout.setSelectedTabIndicatorColor(Color.rgb(190, 194, 68));
         tabLayout.setupWithViewPager(viewPager);
     }
 
