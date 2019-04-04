@@ -19,7 +19,7 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
 
     public MainPagesAdapter(FragmentManager fm, Context context) {
         super(fm);
-      titles =  context.getResources().getStringArray(R.array.tab_title);
+      titles = context.getResources().getStringArray(R.array.tab_title);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
                 return ItemsFragment.createItemsFragment(ItemsFragment.TYPE_EXPENSES);
 
             case PAGE_BALANCE:
-                return null;
+                return new BalanceFragment();
             default:
                 return null;
         }
@@ -43,7 +43,7 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Nullable
