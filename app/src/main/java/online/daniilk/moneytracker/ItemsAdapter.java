@@ -18,9 +18,14 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 ////        createData();
 //    }
 
-    public void setData(List<Item> data){
+    public void setData(List<Item> data) {
         this.data = data;
         notifyDataSetChanged();
+    }
+
+    public void addItem(Item item) {
+        data.add(0,item);
+        notifyItemInserted(0);
     }
 
     @Override
@@ -62,7 +67,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
         public void applyData(Item item) {
             title.setText(item.name); // Сдесь добавить рубль
-            price.setText(String.valueOf(item.price + itemView.getContext().getString(R.string.currency_rub)));
+            price.setText(item.price);
 //            SpannableString spannableString = new SpannableString(String.valueOf(item.getPrice()));
 
         }
