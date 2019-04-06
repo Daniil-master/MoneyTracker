@@ -2,24 +2,19 @@ package online.daniilk.moneytracker;
 
 public class Item {
 
-    private String title; // private - защещённость
-    private String comment;
-    private int price;
+    public static final String TYPE_UNKNOWN = "unknown";
+    public static final String TYPE_INCOMES = "incomes";
+    public static final String TYPE_EXPENSES = "expenses";
 
-    public Item(String title, int price) {
-        this.title = title;
+
+    public int id;
+    public String name; // private - защещённость
+    public int price;
+    public String type;
+
+    public Item(String name, int price, String type) {
+        this.name = name;
         this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public int getPrice() {
-        return price;
+        this.type = type;
     }
 }

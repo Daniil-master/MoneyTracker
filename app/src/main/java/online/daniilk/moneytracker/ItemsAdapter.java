@@ -14,8 +14,13 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     private static final String TAG = "ItemsAdapter";
     private List<Item> data = new ArrayList<>();
 
-    public ItemsAdapter() {
-        createData();
+//    public ItemsAdapter() {
+////        createData();
+//    }
+
+    public void setData(List<Item> data){
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -56,29 +61,29 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         }
 
         public void applyData(Item item) {
-            title.setText(item.getTitle()); // Сдесь добавить рубль
-            price.setText(String.valueOf(item.getPrice() + itemView.getContext().getString(R.string.currency_rub)));
+            title.setText(item.name); // Сдесь добавить рубль
+            price.setText(String.valueOf(item.price + itemView.getContext().getString(R.string.currency_rub)));
 //            SpannableString spannableString = new SpannableString(String.valueOf(item.getPrice()));
 
         }
 
     }
 
-    private void createData() {
-        data.add(new Item("Молоко", 35));
-        data.add(new Item("Жизнь", 1));
-        data.add(new Item("Курсы", 50));
-        data.add(new Item("Хлеб", 26));
-        data.add(new Item("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
-        data.add(new Item("", 0));
-        data.add(new Item("Тот самый ужин", 604));
-        data.add(new Item("ракета Falcon Heavy", 1));
-        data.add(new Item("Лего Тысячилетний сокол", 100000000));
-        data.add(new Item("Монитор", 100));
-        data.add(new Item("MacBook Pro", 100));
-        data.add(new Item("Шиколад", 100));
-        data.add(new Item("Шкаф", 100));
-    }
+//    private void createData() {
+//        data.add(new Item("Молоко", 35));
+//        data.add(new Item("Жизнь", 1));
+//        data.add(new Item("Курсы", 50));
+//        data.add(new Item("Хлеб", 26));
+//        data.add(new Item("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
+//        data.add(new Item("", 0));
+//        data.add(new Item("Тот самый ужин", 604));
+//        data.add(new Item("ракета Falcon Heavy", 1));
+//        data.add(new Item("Лего Тысячилетний сокол", 100000000));
+//        data.add(new Item("Монитор", 100));
+//        data.add(new Item("MacBook Pro", 100));
+//        data.add(new Item("Шиколад", 100));
+//        data.add(new Item("Шкаф", 100));
+//    }
 
 
     // Ctrl + F - поиск
