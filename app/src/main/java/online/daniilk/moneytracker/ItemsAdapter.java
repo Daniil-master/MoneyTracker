@@ -2,6 +2,7 @@ package online.daniilk.moneytracker;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,15 @@ import java.util.List;
 
 class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     private static final String TAG = "ItemsAdapter";
-    private List<Item> data = new ArrayList<>();
 
-//    public ItemsAdapter() {
+    private List<Item> data = new ArrayList<>();
+    private ItemsAdapterListener listener = null;
+
+    public void setListener(ItemsAdapterListener listener) {
+        this.listener = listener;
+    }
+
+    //    public ItemsAdapter() {
 ////        createData();
 //    }
 
@@ -24,7 +31,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     }
 
     public void addItem(Item item) {
-        data.add(0,item);
+        data.add(0, item);
         notifyItemInserted(0);
     }
 
@@ -40,7 +47,7 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
     public void onBindViewHolder(ItemsAdapter.ItemViewHolder holder, int position) {
         // Даёт данные для наполнения
         Item item = data.get(position);
-        holder.applyData(item);
+        holder.bind(item, position, listener, selections.get(position, false));
 
     }
 
@@ -49,6 +56,42 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
         return data.size();
     }
 
+
+    private SparseBooleanArray selections = new SparseBooleanArray();
+// Более оптимизированное чем HashMap, от Google
+
+    public void toggleSelection(int position) {
+
+        if (selections.get(position, false)) {
+            selections.delete(position);
+        } else {
+            selections.put(position, true);
+        }
+        notifyItemChanged(position);
+
+    }
+
+    void clearSelections() {
+        selections.clear();
+        notifyDataSetChanged();
+    }
+
+    int getSelectedItemCount() {
+        return selections.size();
+    }
+
+    List<Integer> getSelectedItems() {
+        List<Integer> items = new ArrayList<>(selections.size());
+        for (int i = 0; i < selections.size(); i++) {
+            items.add(selections.keyAt(i));
+        }
+        return items;
+    }
+    Item remove(int pos){
+        final Item item = data.remove(pos);
+        notifyItemRemoved(pos);
+        return item;
+    }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         // Вложенный статистический класс
@@ -65,30 +108,30 @@ class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 
         }
 
-        public void applyData(Item item) {
-            title.setText(item.name); // Сдесь добавить рубль
+        public void bind(final Item item, final int position, final ItemsAdapterListener listener, boolean selected) {
+            title.setText(item.name);
             price.setText(item.price);
-//            SpannableString spannableString = new SpannableString(String.valueOf(item.getPrice()));
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        listener.onItemClick(item, position);
+                    }
+                }
+            });
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (listener != null) {
+                        listener.onItemLong(item, position);
+                    }
+                    return true;
+                }
+            });
+            itemView.setActivated(selected);
         }
 
     }
-
-//    private void createData() {
-//        data.add(new Item("Молоко", 35));
-//        data.add(new Item("Жизнь", 1));
-//        data.add(new Item("Курсы", 50));
-//        data.add(new Item("Хлеб", 26));
-//        data.add(new Item("Тот самый ужин который я оплатил за всех потому что платил картой", 600000));
-//        data.add(new Item("", 0));
-//        data.add(new Item("Тот самый ужин", 604));
-//        data.add(new Item("ракета Falcon Heavy", 1));
-//        data.add(new Item("Лего Тысячилетний сокол", 100000000));
-//        data.add(new Item("Монитор", 100));
-//        data.add(new Item("MacBook Pro", 100));
-//        data.add(new Item("Шиколад", 100));
-//        data.add(new Item("Шкаф", 100));
-//    }
 
 
     // Ctrl + F - поиск
