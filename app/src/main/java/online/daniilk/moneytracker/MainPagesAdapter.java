@@ -11,13 +11,13 @@ public class MainPagesAdapter extends FragmentPagerAdapter {
 
 
     private static final String TAG = "MainPagesAdapter";
-    private static final int PAGE_INCOMES = 0;
-    private static final int PAGE_EXPENSES = 1;
-    private static final int PAGE_BALANCE = 2;
+    public static final int PAGE_INCOMES = 0;
+    public static final int PAGE_EXPENSES = 1;
+    public static final int PAGE_BALANCE = 2;
 
     private String[] titles;
 
-    public MainPagesAdapter(FragmentManager fm, Context context) {
+     MainPagesAdapter(FragmentManager fm, Context context) {
         super(fm);
       titles = context.getResources().getStringArray(R.array.tab_title);
     }
