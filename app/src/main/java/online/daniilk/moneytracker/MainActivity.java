@@ -1,5 +1,6 @@
 package online.daniilk.moneytracker;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -72,6 +73,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    @SuppressLint("RestrictedApi")
+    public void setFabVisible(boolean visible) {
+        if (!visible)
+            fab.setVisibility(View.VISIBLE);
+        else
+            fab.setVisibility(View.INVISIBLE);
+    }
 
     @Override
     protected void onStart() {

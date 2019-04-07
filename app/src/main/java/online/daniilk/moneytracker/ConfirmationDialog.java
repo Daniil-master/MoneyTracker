@@ -18,13 +18,14 @@ public class ConfirmationDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+   //     ((ItemsFragment) getTargetFragment()).removeSelectedItems();
         AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setTitle("Удаление")
                 .setMessage("Вы уверены?")
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        ((ItemsFragment) getFragmentManager().getFragments().get(0)).removeSelectedItems();
                     }
                 })
                 .setNegativeButton("Нет", new DialogInterface.OnClickListener() {
