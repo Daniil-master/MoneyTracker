@@ -131,10 +131,11 @@ public class ItemsFragment extends Fragment {
 
     private ActionMode actionMode = null;
 
-    private void removeSelectedItems() {
+    public void removeSelectedItems() {
         for (int i = adapter.getSelectedItems().size() - 1; i >= 0; i--) {
             adapter.remove(adapter.getSelectedItems().get(i));
         }
+
 
         actionMode.finish();
     }
@@ -169,6 +170,7 @@ public class ItemsFragment extends Fragment {
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            ((MainActivity) getActivity()).setFabVisible(true);
             MenuInflater inflater = new MenuInflater(getContext());
             inflater.inflate(R.menu.items_menu, menu);
             return true;
@@ -184,7 +186,7 @@ public class ItemsFragment extends Fragment {
             switch (item.getItemId()) {
                 case R.id.remove:
                     showDialog();
-                   // removeSelectedItems();
+                    // removeSelectedItems();
                     break;
             }
 
@@ -193,14 +195,15 @@ public class ItemsFragment extends Fragment {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
+            ((MainActivity) getActivity()).setFabVisible(false);
             adapter.clearSelections();
             actionMode = null;
         }
     };
 
     private void showDialog() {
-ConfirmationDialog dialog = new ConfirmationDialog();
-dialog.show(getFragmentManager(), "Confirmation");
+        ConfirmationDialog dialog = new ConfirmationDialog();
+        dialog.show(getFragmentManager(), "Confirmation");
 
     }
 
