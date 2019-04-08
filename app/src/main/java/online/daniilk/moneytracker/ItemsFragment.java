@@ -20,8 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-import java.util.Objects;
 
+import online.daniilk.moneytracker.api.AddItemResult;
+import online.daniilk.moneytracker.api.Api;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +52,7 @@ public class ItemsFragment extends Fragment {
 
     private ItemsAdapter adapter;
     private Api api;
+    private App app;
 
 
     @Override
@@ -68,7 +70,8 @@ public class ItemsFragment extends Fragment {
             throw new IllegalArgumentException("Unknown type");
         }
 
-        api = ((App) Objects.requireNonNull(getActivity()).getApplication()).getApi();
+        app = (App) getActivity().getApplication();
+        api = app.getApi();
     }
 
     @Nullable
@@ -97,7 +100,8 @@ public class ItemsFragment extends Fragment {
         loadItems();
     }
 
-    private void loadItems() {
+    private void loadItems() { // загрузака пунктов из сервера
+//        Call<List<Item>> call = api.getItems(type);
         Call<List<Item>> call = api.getItems(type);
 
         call.enqueue(new Callback<List<Item>>() {
@@ -117,12 +121,32 @@ public class ItemsFragment extends Fragment {
         });
     }
 
+    private void addItem(final Item item) { // Добавление на сервер
+        Call<AddItemResult> call = api.addItem(item.price, item.name, item.type);
+        call.enqueue(new Callback<AddItemResult>() {
+            @Override
+            public void onResponse(Call<AddItemResult> call, Response<AddItemResult> response) {
+                AddItemResult result = response.body();
+                if(result.status.equals("success")){
+                  adapter.addItem(item);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddItemResult> call, Throwable t) {
+
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == Activity.RESULT_OK) {
             Item item = data.getParcelableExtra("item");
-            if (item.type.equals(type))
-                adapter.addItem(item);
+            if (item.type.equals(type)) {
+                // adapter.addItem(item);
+                addItem(item);
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -170,7 +194,6 @@ public class ItemsFragment extends Fragment {
     private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            ((MainActivity) getActivity()).setFabVisible(true);
             MenuInflater inflater = new MenuInflater(getContext());
             inflater.inflate(R.menu.items_menu, menu);
             return true;
@@ -195,7 +218,6 @@ public class ItemsFragment extends Fragment {
 
         @Override
         public void onDestroyActionMode(ActionMode mode) {
-            ((MainActivity) getActivity()).setFabVisible(false);
             adapter.clearSelections();
             actionMode = null;
         }
