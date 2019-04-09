@@ -21,7 +21,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import online.daniilk.moneytracker.api.AddItemResult;
 import online.daniilk.moneytracker.api.Api;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -122,13 +121,15 @@ public class ItemsFragment extends Fragment {
     }
 
     private void addItem(final Item item) { // Добавление на сервер
-        Call<AddItemResult> call = api.addItem(item.price, item.name, item.type);
+/*
+        Call<AddItemResult> call = api.addItem(item.type);
         call.enqueue(new Callback<AddItemResult>() {
             @Override
             public void onResponse(Call<AddItemResult> call, Response<AddItemResult> response) {
                 AddItemResult result = response.body();
-                if(result.status.equals("success")){
-                  adapter.addItem(item);
+                if (result.status.equals("success")) {
+                    item.id = result.id;
+                    adapter.addItem(item);
                 }
             }
 
@@ -137,6 +138,7 @@ public class ItemsFragment extends Fragment {
 
             }
         });
+        */
     }
 
     @Override
@@ -144,8 +146,8 @@ public class ItemsFragment extends Fragment {
         if (requestCode == REQUEST_CODE_ADD_ITEM && resultCode == Activity.RESULT_OK) {
             Item item = data.getParcelableExtra("item");
             if (item.type.equals(type)) {
-                // adapter.addItem(item);
-                addItem(item);
+                 adapter.addItem(item);
+             //   addItem(item);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

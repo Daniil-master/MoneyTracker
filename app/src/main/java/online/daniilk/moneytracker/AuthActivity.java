@@ -16,10 +16,6 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
 import online.daniilk.moneytracker.api.Api;
-import online.daniilk.moneytracker.api.AuthResult;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AuthActivity extends AppCompatActivity {
     /*
@@ -27,7 +23,9 @@ public class AuthActivity extends AppCompatActivity {
      * 2) https://developers.google.com/identity/sign-in/android/sign-in
      * 3) https://console.developers.google.com/apis/
      *
-     *
+     *   Для обычного запуска:
+     *   a) отключения авторизации
+     *   b) отключение лишниго (Api, App)
      * */
     private static final String TAG = "AuthActivity";
     private static final int RC_SIGN_IN = 321;
@@ -110,7 +108,7 @@ public class AuthActivity extends AppCompatActivity {
         }
 
         String id = account.getId();
-        api.auth(id).equals(new Callback<AuthResult>() {
+      /*  api.auth(id).equals(new Callback<AuthResult>() {
             @Override
             public void onResponse(Call<AuthResult> call, Response<AuthResult> response) {
                 AuthResult result = response.body();
@@ -125,7 +123,7 @@ public class AuthActivity extends AppCompatActivity {
             }
         });
         Log.i(TAG, "updateUI: id = " + id);
-
+*/
     }
 
     private void showSuccess() {

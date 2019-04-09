@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -52,9 +51,9 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (price.getText() == charSequence) {
-                    Toast.makeText(AddItemActivity.this, "Price ID", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(AddItemActivity.this, "Price ID", Toast.LENGTH_SHORT).show();
                     if (TextUtils.isEmpty(price.getText()))
-                        price.setText(getString(R.string.currency_rub));
+                        price.setText(getString(R.string.price));
                 }
             }
 
@@ -88,7 +87,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             finish();
             return true;
         }

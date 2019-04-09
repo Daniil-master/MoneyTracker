@@ -78,13 +78,16 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     @Override
     protected void onResume() {
         super.onResume();
+        initTabs(); // для отображения данных
 
-        if (((App) getApplication()).isAuthorized()) {
+        // Проверка авторизованы ли мы?
+      /*  if (((App) getApplication()).isAuthorized()) {
             initTabs();
         } else {
             Intent intent = new Intent(this, AuthActivity.class);
             startActivity(intent);
         }
+        */
     }
 
     private void initTabs() {
