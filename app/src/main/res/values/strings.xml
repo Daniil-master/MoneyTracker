@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoneyTracker</string>
+    <string name="app_name">MoneyTrackerRealise</string>
 
     <!-- Find Usages Где используется-->
     <string name="add_item_screen_title">Новая запись</string>

@@ -29,7 +29,7 @@ public class App extends Application {
         // Настройка Retrofit и подключение к серверу
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor(); // Перехватчик всех запросов
         interceptor.setLevel(
-                BuildConfig.DEBUG
+                BuildConfig.DEBUG // логи при дебагге, важнО!
                         ? HttpLoggingInterceptor.Level.BODY
                         : HttpLoggingInterceptor.Level.NONE);   // Тернарный оператор true:false;
 

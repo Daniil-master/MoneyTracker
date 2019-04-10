@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import online.daniilk.moneytracker.api.Api;
+import online.daniilk.moneytracker.api.Item;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

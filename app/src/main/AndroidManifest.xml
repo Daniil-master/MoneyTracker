@@ -17,8 +17,7 @@
         <activity android:name=".AuthActivity"></activity>
         <!-- GoogleAppIndexingWarning - GooglePlay категория и предназначение приложения -->
         <activity
-            android:name=".MainActivity"
-            android:label="@string/main_screen_title">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -8,18 +8,33 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+//        resConfig "en", "ru" // языки под которые сохранять ресурсы
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            shrinkResources true // оптмизации и сжатие файлов, если нет ссылки на них то удаляется
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "BASE_URL","\"https://moneytrackeruin.getsandbox.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://moneytrackeruin.getsandbox.com/\""
+            resValue("string", "gradle_title", "MTRelease")
         }
         debug {
-            buildConfigField "String", "BASE_URL","\"https://moneytrackeruin.getsandbox.com/\""
+            applicationIdSuffix ".debug"
+            buildConfigField "String", "BASE_URL", "\"https://moneytrackeruin.getsandbox.com/\""
+            resValue("string", "gradle_title", "MTDebug")
         }
     }
+
+// Разные продукты
+//    productFlavors{
+//        demo{
+//
+//        }
+//        full{
+//
+//        }
+//    }
 }
 
 dependencies {

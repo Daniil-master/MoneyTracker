@@ -1,4 +1,4 @@
-package online.daniilk.moneytracker;
+package online.daniilk.moneytracker.api;
 
 import android.os.Parcel;
 import android.os.Parcelable;

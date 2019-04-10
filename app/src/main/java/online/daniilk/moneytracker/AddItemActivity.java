@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import online.daniilk.moneytracker.api.Item;
+
 public class AddItemActivity extends AppCompatActivity {
 
     private static final String TAG = "AddItemActivity";
