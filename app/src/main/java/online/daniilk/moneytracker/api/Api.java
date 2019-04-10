@@ -2,7 +2,6 @@ package online.daniilk.moneytracker.api;
 
 import java.util.List;
 
-import online.daniilk.moneytracker.Item;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
